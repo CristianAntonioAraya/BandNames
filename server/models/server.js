@@ -10,7 +10,7 @@ class Server {
 
         this.app = express();
 
-        this.port = 4000;
+        this.port = process.env.PORT;
 
         this.server = http.createServer( this.app );
 
@@ -30,7 +30,7 @@ class Server {
 
     }
 
-
+ 
     execute() {
 
         //Middlewares
