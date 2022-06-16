@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const BandTable = ( { socket }) => {
+const BandTable = ( { socket, addVote, susVote, delBand }) => {
 
     const [bands, setBands] = useState([])
 
@@ -10,6 +10,23 @@ const BandTable = ( { socket }) => {
       } )
     }, [ socket ])
     
+    const handleChangeBandName = ( event , id ) => {
+        const newName = event.target.value;
+
+        setBands( bands => bands.map( band => {
+
+            if( band.id === id ){
+                band.name = newName;
+            }
+            return band;
+        }))
+        socket.emit( )
+    }
+
+    const sendChanges = ( id, name ) => {
+        socket.emit('update-band', { id, name })
+    }
+
 
     return (
         <table>
@@ -27,19 +44,38 @@ const BandTable = ( { socket }) => {
                 {
                     bands.map( band => (
                         <tr key={band.id}>
-                            <td>{band.name}</td>
+                            <td>
+                                <input 
+                                    value={band.name} 
+                                    className='table__input' 
+                                    onChange={ (e)=> handleChangeBandName( e, band.id )}
+                                    onBlur={ () => sendChanges( band.id, band.name ) }
+                                />        
+                            </td>
                             <td>{band.votes}</td>
                             <td>
-                                <button className="btn__add">-1</button>
+                                <button 
+                                    onClick={ () => susVote( band.id )}
+                                    className="btn__add">
+                                    -1
+                                </button>
                             </td>
                             <td>
-                                <button className="btn__add">-1</button>
+                                <button 
+                                    className="btn__add"
+                                    onClick={ () => addVote( band.id )}>
+                                    +1
+                                </button>
                             </td>
                             <td>
-                                <button className="btn__delete">Del</button>
+                                <button 
+                                    onClick={ () => delBand( band.id )}
+                                    className="btn__delete">
+                                        Del
+                                </button>
                             </td>
                         </tr>
-                    ))
+                        ))
                 }
                 
 

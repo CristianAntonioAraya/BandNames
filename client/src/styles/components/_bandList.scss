@@ -16,6 +16,11 @@ table{
         text-align: center;
     }
 }
+.table__input{
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 25px;
+}
 
 .name__clmn{
     width: 100%;
@@ -29,6 +34,7 @@ table{
 }
 
 tbody tr td {
+    padding: 1rem 0;
     border-bottom: 1px solid black;
     text-align: center;
 }

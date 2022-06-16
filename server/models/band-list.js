@@ -20,7 +20,7 @@ class BandList {
     }
 
     removeBand( id ) { 
-        this.bands = this.bands.filter( Band => band.id !== id );
+        this.bands = this.bands.filter( band => band.id !== id );
 
     }
 
@@ -41,6 +41,27 @@ class BandList {
         } )
 
     }
+
+    decreaseVotes( id ){
+
+        this.bands = this.bands.map( band => {
+
+            if( band.id === id ){
+                if( band.votes === 0 ){
+                    band.votes = 0
+                }
+                else{
+                    band.votes -= 1;
+                }
+            }
+
+            return band;
+
+        } )
+
+    }
+
+
     changeBandName( id, newName ){
 
         this.bands = this.bands.map( band => {
