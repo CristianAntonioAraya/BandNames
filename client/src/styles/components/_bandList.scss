@@ -1,0 +1,61 @@
+table{ 
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 20px;
+}
+
+.table__head{
+    color: #06283D;
+    padding: 1rem;
+    border-bottom: 2px solid black;
+    td{
+        padding: 1rem;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+}
+.table__input{
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 25px;
+}
+
+.name__clmn{
+    width: 100%;
+}
+
+.vote__clmn{
+    width: 60%;
+}
+.btn__clmn{
+    width: 20%;
+}
+
+tbody tr td {
+    padding: 1rem 0;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.btn__add{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background: #06283D;
+}
+.btn__delete{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #F24C4C;
+}

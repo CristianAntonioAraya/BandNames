@@ -1,0 +1,18 @@
+.navbar__container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar__title{
+    font-size: 50px;
+    font-weight: 600;
+}
+.navbar__online{
+    font-style: italic;
+    color: green;
+}
+.navbar__offline{
+    font-style: italic;
+    color: red;
+}
