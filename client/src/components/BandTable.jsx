@@ -1,13 +1,20 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { SocketContext } from "../context/socketContext"
 
-const BandTable = ( { socket, addVote, susVote, delBand }) => {
+const BandTable = () => {
 
     const [bands, setBands] = useState([])
 
+    const { socket } = useContext( SocketContext )
+
     useEffect(() => {
+
       socket.on('current-bands', (bandsList) => {
         setBands( bandsList )
       } )
+
+      return () => socket.off('current-bands');
+
     }, [ socket ])
     
     const handleChangeBandName = ( event , id ) => {
@@ -20,11 +27,22 @@ const BandTable = ( { socket, addVote, susVote, delBand }) => {
             }
             return band;
         }))
-        socket.emit( )
     }
 
     const sendChanges = ( id, name ) => {
         socket.emit('update-band', { id, name })
+    }
+
+    const handleAddBandVote = (id) => {
+        socket.emit('add-vote', id )
+    }
+
+    const handleSusBandVote = (id) => {
+        socket.emit('sus-vote', id )
+    }
+
+    const handleDelBand = ( id ) => {
+        socket.emit('del-band', id )
     }
 
 
@@ -55,7 +73,7 @@ const BandTable = ( { socket, addVote, susVote, delBand }) => {
                             <td>{band.votes}</td>
                             <td>
                                 <button 
-                                    onClick={ () => susVote( band.id )}
+                                    onClick={ () => handleSusBandVote( band.id )}
                                     className="btn__add">
                                     -1
                                 </button>
@@ -63,13 +81,13 @@ const BandTable = ( { socket, addVote, susVote, delBand }) => {
                             <td>
                                 <button 
                                     className="btn__add"
-                                    onClick={ () => addVote( band.id )}>
+                                    onClick={ () => handleAddBandVote( band.id )}>
                                     +1
                                 </button>
                             </td>
                             <td>
                                 <button 
-                                    onClick={ () => delBand( band.id )}
+                                    onClick={ () => handleDelBand( band.id )}
                                     className="btn__delete">
                                         Del
                                 </button>

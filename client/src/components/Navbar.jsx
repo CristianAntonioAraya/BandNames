@@ -1,28 +1,10 @@
-import { useEffect, useState } from "react"
+import { useContext } from "react"
+import { SocketContext } from "../context/socketContext";
 
-const Navbar = ( { socket }) => {
+const Navbar = () => {
 
-  const [online, setOnline] = useState(false)
 
-  useEffect(() => {
-      setOnline( socket.connected )
-  }, [socket])
-
-  useEffect(() => {
- 
-    socket.on("connect", () => {
-        setOnline( true );
-    });
- 
-  }, [ socket ]);
-  
-  useEffect(() => {
- 
-    socket.on("disconnect", () => {
-        setOnline( false );
-    });
- 
-  }, [ socket ]);
+  const { online } = useContext( SocketContext );
 
   return (
     <div className="navbar__container">

@@ -16,6 +16,10 @@ class Sockets {
     socketsEvents() {
 
         this.io.on('connection', ( socket ) => {
+
+            socket.on('welcome-message', ( data ) => {
+                console.log( data )
+            })
             
             socket.emit('current-bands', this.bandList.getBands() )
             //Add vote to band
