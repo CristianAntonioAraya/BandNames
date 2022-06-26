@@ -1,7 +1,15 @@
 # Band Names App
 
+BandName is an application that allows you to vote between bands, through a graph you can see the votes more clearly, you can add and delete as many bands as the user deems, this application is connected to a socket server with express that processes all changes on time real between users
+
+[![Design.png](https://i.postimg.cc/7hRMSNVb/Design.png)](https://postimg.cc/zHngrK41)
+
+
 This project was created using `create-react-app` for
 client side and express and socket.io in the server side.
+
+
+
 
 ## ***Client Side***
 

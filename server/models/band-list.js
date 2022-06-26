@@ -7,7 +7,6 @@ class BandList {
 
         this.bands = [ 
             new Band('The Beatles'),
-            new Band('The Rolling Stones')
         ];
 
     };

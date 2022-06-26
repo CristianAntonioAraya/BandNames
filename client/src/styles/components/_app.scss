@@ -1,13 +1,22 @@
 .app__container{
     width: 100%;
     height: 100%;
-    padding: 2rem 12rem;
+    @include mediaQueries(xs){padding: 2rem 1rem;}
+    @include mediaQueries(sm){padding: 2rem 4rem;}
+    @include mediaQueries(md){padding: 2rem 6rem;}
+    @include mediaQueries(lg){padding: 2rem 8rem;}
+    @include mediaQueries(xl){padding: 2rem 12rem;}
 }
 
 .content__container{
     width: 100%;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-column-gap: 5rem;
-    margin-top: 5rem;
+    margin: 5rem 0;
+}
+
+.chart__container{
+    @include mediaQueries(xs){height: 10rem;}
+    @include mediaQueries(sm){height: 10rem;}
+    @include mediaQueries(md){height: 10rem;}
+    @include mediaQueries(lg){height: 10rem;}
+    @include mediaQueries(xl){height: 18rem;}
 }

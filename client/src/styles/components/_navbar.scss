@@ -5,14 +5,32 @@
     align-items: center;
 }
 .navbar__title{
-    font-size: 50px;
-    font-weight: 600;
+    font-weight: bold;
+    font-size: $Font__xl;
+    color: $Primary_Color;
+}
+.navbar__items{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.navbar__status-container{
+    display: none;
+    @include mediaQueries(sm){ display: flex;}
+}
+.navbar__status{
+    color: $Primary_Color;
+    font-size: $Font__md;
+    font-weight: bold;
 }
 .navbar__online{
+    font-size: $Font__md;
     font-style: italic;
-    color: green;
+    color: $Success_Color;
 }
 .navbar__offline{
+    font-size: $Font__md;
     font-style: italic;
-    color: red;
+    color: $Danger_Color;
 }

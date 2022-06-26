@@ -1,6 +1,5 @@
 import Navbar from "../components/Navbar"
 import BandTable from "../components/BandTable"
-import AddNewBand from "../components/AddNewBand"
 import BandChart from "../components/BandChart"
 
 const HomePage = () => {
@@ -12,7 +11,6 @@ const HomePage = () => {
       
       <div className="content__container">
         <BandChart/>
-        <AddNewBand/>
       </div>
 
       <BandTable/>

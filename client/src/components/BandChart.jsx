@@ -1,23 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import {Chart, ArcElement, CategoryScale,LinearScale, BarElement, Tooltip, } from 'chart.js'
 import { Bar } from 'react-chartjs-2';
 import { SocketContext } from '../context/socketContext';
 
-const BandChart = () => {
+export const BandChart = () => {
 
-    const { socket } = useContext( SocketContext )
-    const [bands, setBands] = useState([])
-    
-    useEffect(() => {
-        
-        socket.on('current-bands', (bandsList) => {
-            setBands( bandsList )
-        } )
-        
-        return () => socket.off('current-bands');
-        
-    }, [ socket ]);
-    
+    const { bands } = useContext( SocketContext )
     
     Chart.register( ArcElement,CategoryScale, LinearScale, CategoryScale, BarElement, Tooltip );
     
@@ -47,11 +35,23 @@ const BandChart = () => {
         }]
 
     }
+    const options = {
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels:{
+                    font:{
+                        size: 20
+                    }
+                }
+            }
+        }
+    }
 
 
     return (
-        <div>
-            <Bar data={ data }options={{maintainAspectRatio: false}}/>
+        <div className='chart__container'>
+            <Bar data={ data } options={options}/>
         </div>
     )
 }

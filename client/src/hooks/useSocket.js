@@ -1,34 +1,30 @@
-import { useState } from "react";
-import { useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import io from "socket.io-client"
 
-const useSocket = ( serverPath ) => {
+export const useSocket = ( serverPath ) => {
 
-    const [online, setOnline] = useState(false)
+  const socket = useMemo( () => io.connect( serverPath, { transports: ['websocket'] }) , [serverPath] );
 
-    const socket = useMemo( () => io.connect( serverPath, { transports: ['websocket'] }) , [serverPath] )
+    const [online, setOnline] = useState(false);
 
     useEffect(() => {
         setOnline( socket.connected )
     }, [socket])
   
     useEffect(() => {
-      socket.on("connect", () => {
-          setOnline( true );
-      });
-   
+      socket.on('connect', () => {
+        setOnline( true );
+      })
     }, [ socket ]);
     
     useEffect(() => {
-      socket.on("disconnect", () => {
-          setOnline( false );
-      });
-   
+      socket.on('disconnect', () => {
+        setOnline( false );
+      })
+
     }, [ socket ]);
 
 
     return { socket, online }
 
 }
-
-export default useSocket
