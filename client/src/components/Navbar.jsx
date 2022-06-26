@@ -1,42 +1,29 @@
-import { useEffect, useState } from "react"
+import { useContext } from "react"
+import { SocketContext } from "../context/socketContext";
+import AddNewBand from "./AddNewBand";
 
-const Navbar = ( { socket }) => {
+export const Navbar = () => {
 
-  const [online, setOnline] = useState(false)
+    const { online } = useContext( SocketContext );
 
-  useEffect(() => {
-      setOnline( socket.connected )
-  }, [socket])
-
-  useEffect(() => {
- 
-    socket.on("connect", () => {
-        setOnline( true );
-    });
- 
-  }, [ socket ]);
-  
-  useEffect(() => {
- 
-    socket.on("disconnect", () => {
-        setOnline( false );
-    });
- 
-  }, [ socket ]);
-
-  return (
-    <div className="navbar__container">
-        <span className="navbar__title">BandName</span>
-        <div>
-          <span>Status: </span>
-          {
-            online 
-            ? <span className="navbar__online">Online</span>
-            : <span className="navbar__offline">Offline</span>
-          }
-        </div>
-    </div>
-  )
+   
+    
+    return (
+      <div className="navbar__container">
+          <span className="navbar__title">BandName</span>
+          <div className="navbar__items">
+              <AddNewBand/>
+            <div className="navbar__status-container">
+              <span className="navbar__status">Status: </span>
+              {
+                online 
+                ? <span className="navbar__online">Online</span>
+                : <span className="navbar__offline">Offline</span>
+              }
+            </div>
+          </div>
+      </div>
+    )
 }
 
 export default Navbar

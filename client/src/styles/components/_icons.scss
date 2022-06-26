@@ -1,0 +1,14 @@
+.icon__btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.vote__icon{
+    width: $Font__lg;
+    fill: $Primary_Color;
+}
+
+.trash__icon{
+    width: $Font__lg;
+    fill: $Danger_Color;
+}

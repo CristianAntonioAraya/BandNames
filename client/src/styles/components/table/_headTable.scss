@@ -1,0 +1,20 @@
+.table__head{
+    color: $Primary_Color;
+    padding: 1rem;
+    border-bottom: 4px solid $Primary_Color;
+    td{
+        padding: 1rem;
+        font-size: $Font__lg;
+        font-weight: bold;
+        text-align: center;
+    }
+}
+.name__clmn{
+    width: 100%;
+}
+.vote__clmn{
+    width: 60%;
+}
+.btn__clmn{
+    width: 20%;
+}

@@ -1,84 +1,29 @@
-import { useEffect, useState } from "react"
+import { useContext } from "react"
+import { SocketContext } from "../context/socketContext"
+import { TableAddVotes, TableDelete, TableHead, TableInput, TableRmVotes } from "./tableComponents/index"
 
-const BandTable = ( { socket, addVote, susVote, delBand }) => {
+export const BandTable = () => {
 
-    const [bands, setBands] = useState([])
-
-    useEffect(() => {
-      socket.on('current-bands', (bandsList) => {
-        setBands( bandsList )
-      } )
-    }, [ socket ])
-    
-    const handleChangeBandName = ( event , id ) => {
-        const newName = event.target.value;
-
-        setBands( bands => bands.map( band => {
-
-            if( band.id === id ){
-                band.name = newName;
-            }
-            return band;
-        }))
-        socket.emit( )
-    }
-
-    const sendChanges = ( id, name ) => {
-        socket.emit('update-band', { id, name })
-    }
-
+    const { bands } = useContext( SocketContext )
 
     return (
         <table>
+            <TableHead/>
 
-            <thead>
-                <tr className="table__head">
-                    <td className="name__clmn">Band name</td>
-                    <td className="vote__clmn">Votes</td>
-                    <td className="btn__clmn">&nbsp;</td>
-                    <td className="btn__clmn">&nbsp;</td>
-                    <td className="btn__clmn">&nbsp;</td>
-                </tr>
-            </thead>
             <tbody>
+
                 {
                     bands.map( band => (
                         <tr key={band.id}>
-                            <td>
-                                <input 
-                                    value={band.name} 
-                                    className='table__input' 
-                                    onChange={ (e)=> handleChangeBandName( e, band.id )}
-                                    onBlur={ () => sendChanges( band.id, band.name ) }
-                                />        
-                            </td>
-                            <td>{band.votes}</td>
-                            <td>
-                                <button 
-                                    onClick={ () => susVote( band.id )}
-                                    className="btn__add">
-                                    -1
-                                </button>
-                            </td>
-                            <td>
-                                <button 
-                                    className="btn__add"
-                                    onClick={ () => addVote( band.id )}>
-                                    +1
-                                </button>
-                            </td>
-                            <td>
-                                <button 
-                                    onClick={ () => delBand( band.id )}
-                                    className="btn__delete">
-                                        Del
-                                </button>
-                            </td>
+                            <TableInput band={ band }/>
+                            <td className="table__votes">{band.votes}</td>
+                            <TableRmVotes band={ band }/>
+                            <TableAddVotes band={ band }/>
+                            <TableDelete band={ band }/>
                         </tr>
                         ))
                 }
                 
-
             </tbody>
 
         </table>    

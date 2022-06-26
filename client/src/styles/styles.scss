@@ -1,7 +1,14 @@
-@import './base/base';
+@import './base/mediaQueries';
 @import './base/settings';
+@import './base/base';
 
 @import './components/app';
 @import './components/navbar';
 @import './components/bandList';
 @import './components/addNewBand';
+
+//table
+
+@import './components/table/headTable';
+@import './components/table/headInput';
+@import './components/icons';

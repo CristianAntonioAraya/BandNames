@@ -1,36 +1,8 @@
-.addnew__container{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1rem;
-    padding: 1rem 0.5rem;
-    h3 {
-        font-size: 25px;
-    }
-}
-
-.addnew__form{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    label{
-        position: relative;
-        width: fit-content;
-        top: 0.6rem;
-        left: 1rem;
-        background-color: white;
-        font-size: 20px;
-
-    }
-    input {
-        padding: 1rem;
-        font-size: 20px;
-    }
-}
-.addnew__btn-submit{
-    margin-top: 1rem;
-    padding: 0.5rem;
-    font-size: 15px;
+.addNew__item{
+    margin: 0 1rem;
+    font-size: $Font__md;
+    color: $Primary_Color;
+    font-weight: bold;
     cursor: pointer;
+    
 }

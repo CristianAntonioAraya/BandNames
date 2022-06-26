@@ -1,0 +1,5 @@
+export * from './TableAddVotes'
+export * from './TableDelete'
+export * from './TableHead'
+export * from './TableInput'
+export * from './TableRmVotes'
